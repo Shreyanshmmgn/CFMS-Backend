@@ -31,4 +31,5 @@ const signUpTemplate = new schema({
   },
 });
 
-module.exports = mongoose.model("mainDatabase", signUpTemplate);
+
+module.exports = mongoose.model("userData", signUpTemplate);

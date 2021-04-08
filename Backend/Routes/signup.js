@@ -4,16 +4,12 @@ const pendingUser = require("../Models/pendingRequests");
 const { sendConfirmationEmail } = require("../functionLib/mailer");
 
 exports.signup = async (req, res) => {
-  const { userName, email, password, status } = req.body;
+  const { userName, email, password } = req.body;
   try {
-    console.log("Before user found or not! : ", req.body.email);
-
-    // const checkUser = await User.findOne({ email });
-    // const checkPendingUser = await pendingUser.findOne({ email });
-    const checkUser = false;
-    const checkPendingUser = false;
-
-    console.log("After user found or not!", checkPendingUser);
+    const checkUser = await User.findOne({ email });
+    const checkPendingUser = await pendingUser.findOne({ email });
+    // const checkUser = false;
+    // const checkPendingUser = false;
 
     if (checkPendingUser || checkUser) {
       // 422 for unprocessable entity
@@ -21,48 +17,23 @@ exports.signup = async (req, res) => {
         .status(422)
         .json({ success: false, msg: " User already exsists! " });
     }
-    console.log("Debug stat 1 : user is new !");
     const saltHash = utils.genPassword(password);
 
     const salt = saltHash.salt;
     const hash = saltHash.hash;
 
-    const newPUser = new pendingUser({ email });
-    newPUser.save().then((user) => {
-      console.log(user);
-    });
+    const newPUser = new pendingUser({ userName, email, salt, hash });
 
-    console.log("New user in pending user database created : ", newPUser);
+    console.log("New waiting user : ", newPUser);
 
     await sendConfirmationEmail({
       email: newPUser.email,
-      hash: newPUser._id,
+      _id: newPUser._id,
     });
 
-    const newUser = new User({
-      userName: userName,
-      email: email,
-      hash: hash,
-      salt: salt,
-    });
-
-    console.log(newUser);
-
-    await newUser
-      .save()
-      .then((user) => {
-        console.log(user);
-        //   const id = user._id;
-        const jwt = utils.issueJWT(user);
-        res.json({
-          success: true,
-          user: user,
-          token: jwt.token,
-          expiersIn: jwt.expires,
-        });
-      })
-      .catch((err) => console.log(err));
-  } catch (error) {
-    console.log(error);
+    await newPUser.save();
+    res.json({ message: "You have been registered. in pending requests" });
+  } catch (e) {
+    res.status(422).send(e.message);
   }
 };

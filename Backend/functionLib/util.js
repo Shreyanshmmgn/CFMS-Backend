@@ -13,18 +13,16 @@ const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
 const algorithm = "aes192";
 const password = "Hey you this is password";
 const key = crypto.scryptSync(password, "salt", 24); //creating key
-let iv;
+// let iv;
+let iv = crypto.randomBytes(16);
 
 // Function to encrypt data
 const encryptdata = (data) => {
+  fs.writeFileSync(__dirname + "/data.pem", iv);
   let text = data;
-
-  iv = crypto.randomBytes(16);
   const cipher = crypto.createCipheriv(algorithm, key, iv);
   const encrypted = cipher.update(text, "utf8", "hex") + cipher.final("hex");
   console.log(encrypted);
-
-  fs.writeFileSync(__dirname + "/data.pem", iv);
   return encrypted;
 };
 
