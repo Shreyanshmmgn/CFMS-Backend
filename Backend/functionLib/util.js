@@ -4,8 +4,11 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
-const pathToKey = path.join(__dirname, "..", "id_rsa_priv.pem");
-const pathToPubKey = path.join(__dirname, "..", "id_rsa_pub.pem");
+// const PRIV_KEY = process.env.PRIV_KEY;
+// const PUB_KEY = process.env.PUB_KEY;
+
+const pathToKey = path.join(__dirname, "..", "priv.pem");
+const pathToPubKey = path.join(__dirname, "..", "pub.pem");
 
 const PRIV_KEY = fs.readFileSync(pathToKey, "utf8");
 const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
@@ -36,6 +39,8 @@ const decryptData = (encryptedData, iv) => {
 };
 
 function validPassword(password, hash, salt) {
+  // ----- Had to change pbkdf2Sync in future -----
+
   var hashVerify = crypto
     .pbkdf2Sync(password, salt, 10000, 64, "sha512")
     .toString("hex");
@@ -47,7 +52,6 @@ function genPassword(password) {
   var genHash = crypto
     .pbkdf2Sync(password, salt, 10000, 64, "sha512")
     .toString("hex");
-
   return {
     salt: salt,
     hash: genHash,

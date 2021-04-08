@@ -17,15 +17,13 @@ exports.login = (req, res, next) => {
         );
         if (isValid) {
           const tokenObj = utils.issueJWT(user);
-          res
-            .status(200)
-            .json({
-              success: true,
-              user: user,
-              token: tokenObj,
-              msg: "User found!!",
-            })
-            .then((user) => {});
+          res.status(200).json({
+            success: true,
+            user: user,
+            token: tokenObj,
+            msg: "User found!!",
+          });
+          // .then((user) => {});
         } else {
           console.log("Wong password - 2");
           res.status(401).json({
