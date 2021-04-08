@@ -30,6 +30,6 @@ const signUpTemplate = new schema({
     default: Date.now,
   },
 });
-
+// Document  
 
 module.exports = mongoose.model("userData", signUpTemplate);
