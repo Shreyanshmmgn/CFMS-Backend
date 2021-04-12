@@ -3,9 +3,10 @@ const utils = require("../functionLib/util");
 
 exports.login = (req, res, next) => {
   {
-    User.findOne({ email: req.body.email })
+    const email = req.body.email;
+    User.findOne({ email })
       .then((user) => {
-        console.log(user);
+        console.log("User  : ", user);
         if (!user) {
           console.log("Wong password - 1");
           res.status(401).json({ success: false, msg: "User not found !" });

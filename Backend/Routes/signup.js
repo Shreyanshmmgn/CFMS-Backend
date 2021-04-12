@@ -33,6 +33,7 @@ exports.signup = async (req, res) => {
 
     await newPUser.save();
     res.json({ message: "You have been registered. in pending requests" });
+    console.log("You have been registered. in pending requests");
   } catch (e) {
     res.status(422).send(e.message);
   }

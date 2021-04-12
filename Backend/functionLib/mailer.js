@@ -1,8 +1,19 @@
 const nodeMailer = require("nodemailer");
 const fs = require("fs");
 
-exports.sendConfirmationEmail = ({ email, _id }) => {
-  const iv = fs.readFileSync(__dirname + "/data.pem", "utf-8");
+// const transporterF = () => {
+//   nodeMailer.createTransport({
+//     service: "Gmail",
+//     auth: {
+//       user: process.env.GOOGLE_USER,
+//       pass: process.env.GOOGLE_PASSWORD,
+//       // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
+//     },
+//   });
+// };
+
+sendConfirmationEmail = ({ email, _id }) => {
+  console.log(" Function called mail !");
   return new Promise((res, rej) => {
     const transporter = nodeMailer.createTransport({
       service: "Gmail",
@@ -36,3 +47,41 @@ exports.sendConfirmationEmail = ({ email, _id }) => {
     console.log("Mail send  !!");
   });
 };
+
+changePasswordMail = ({ email }) => {
+  new Promise((res, rej) => {
+    const transporter = nodeMailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: process.env.GOOGLE_USER,
+        pass: process.env.GOOGLE_PASSWORD,
+        // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
+      },
+    });
+    const message = {
+      from: process.env.GOOGLE_USER,
+      to: email,
+      subject: "CFMS - Forgot Password Link",
+      html: `
+        <h3> Hello ${email} </h3>
+        <p>To change your password  click on the below mentioned link</p>
+        <p> <a target="_" href="${process.env.DOMAIN}/changePassword/${email}">${process.env.DOMAIN}/forogtPassword</a></p>
+        <p>Regards</p>
+        <p>CFMS</p>
+      `,
+    };
+
+    transporter.sendMail(message, function (err, info) {
+      if (err) {
+        rej(err);
+      } else {
+        console.log(info);
+        res(info);
+      }
+    });
+    console.log("Forgot password Mail send  !!");
+  });
+};
+
+exports.sendConfirmationEmail = sendConfirmationEmail;
+exports.changePasswordMail = changePasswordMail;

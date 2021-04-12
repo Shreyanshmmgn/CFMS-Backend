@@ -29,6 +29,11 @@ const pendingEmailsForVerification = new schema({
     type: Date,
     default: Date.now,
   },
+  expireAt: {
+    type: Date,
+    default: Date.now,
+    index: { expires: "1d" },
+  },
 });
 
 module.exports = mongoose.model("pendingData", pendingEmailsForVerification);

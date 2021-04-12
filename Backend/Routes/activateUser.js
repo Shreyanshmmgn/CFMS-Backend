@@ -13,7 +13,7 @@ exports.activateUser = async (req, res) => {
           console.log(user);
           //   const id = user._id;
           const jwt = utils.issueJWT(user);
-          res.json({
+          res.status(200).json({
             success: true,
             user: user,
             token: jwt.token,
