@@ -1,7 +1,7 @@
 const User = require("../Models/userModel");
 const utils = require("../functionLib/util");
 
-exports.changePassword = async (req, res) => {
+exports.registration = async (req, res) => {
   const { password } = req.body;
   const { email } = req.params;
   const mail = email + ".com";

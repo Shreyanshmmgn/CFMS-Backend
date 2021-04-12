@@ -29,7 +29,22 @@ const signUpTemplate = new schema({
     type: Date,
     default: Date.now,
   },
+  userData: {
+    name: { type: String },
+    email: { type: String },
+    phoneNumber: { type: String },
+    currentAddress: { type: String },
+    permanentAdress: { type: String },
+    state: { type: String },
+    pincode: { type: String },
+    dob: { type: String },
+    martialStatus: { type: String },
+    occupation: { type: String },
+    monthlyIncome: { type: String },
+    gender: { type: String },
+    picture: {},
+  },
 });
-// Document  
+// Document
 
 module.exports = mongoose.model("userData", signUpTemplate);
