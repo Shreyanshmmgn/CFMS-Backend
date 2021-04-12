@@ -3,7 +3,6 @@ const utils = require("../functionLib/util");
 exports.activateUser = async (req, res) => {
   {
     const { hash } = req.params;
-    console.log(" Hash : ", hash);
     try {
       const user = await PendingUser.find({ _id: hash });
       const pendingUser = new User({ ...user.data });

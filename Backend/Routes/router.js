@@ -68,6 +68,6 @@ router.post("/activate/user/:_id", async (req, res) => {
 // ------------ Registration Route ------------
 
 const { registration } = require("./registration");
-router.post("/changePassword/:email", registration);
+router.post("/registration", registration);
 
 module.exports = router;

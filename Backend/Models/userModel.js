@@ -42,7 +42,7 @@ const signUpTemplate = new schema({
     occupation: { type: String },
     monthlyIncome: { type: String },
     gender: { type: String },
-    picture: {},
+    picture: { data: Buffer, contentType: String },
   },
 });
 // Document

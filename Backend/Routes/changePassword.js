@@ -8,7 +8,6 @@ exports.changePassword = async (req, res) => {
   try {
     await User.findOne({ email }).then(async (user) => {
       console.log(user);
-      console.log("Pass :", password);
       const saltHash = utils.genPassword(password);
       const salt = saltHash.salt;
       const hash = saltHash.hash;
@@ -17,7 +16,6 @@ exports.changePassword = async (req, res) => {
       user.salt = salt;
       user.hash = hash;
       user.save((err) => {
-        console.log("user saved");
         console.log(err);
       });
       // await user.update(
