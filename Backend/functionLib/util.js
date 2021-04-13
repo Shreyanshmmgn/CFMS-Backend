@@ -15,28 +15,28 @@ const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
 
 const algorithm = "aes192";
 const password = "Hey you this is password";
-const key = crypto.scryptSync(password, "salt", 24); //creating key
-// let iv;
-let iv = crypto.randomBytes(16);
+// const key = crypto.scryptSync(password, "salt", 24); //creating key
+// // let iv;
+// let iv = crypto.randomBytes(16);
 
-// Function to encrypt data
-const encryptdata = (data) => {
-  fs.writeFileSync(__dirname + "/data.pem", iv);
-  let text = data;
-  const cipher = crypto.createCipheriv(algorithm, key, iv);
-  const encrypted = cipher.update(text, "utf8", "hex") + cipher.final("hex");
-  console.log(encrypted);
-  return encrypted;
-};
+// // Function to encrypt data
+// const encryptdata = (data) => {
+//   fs.writeFileSync(__dirname + "/data.pem", iv);
+//   let text = data;
+//   const cipher = crypto.createCipheriv(algorithm, key, iv);
+//   const encrypted = cipher.update(text, "utf8", "hex") + cipher.final("hex");
+//   console.log(encrypted);
+//   return encrypted;
+// };
 
-// Function to decrypt data
-const decryptData = (encryptedData, iv) => {
-  const decipher = crypto.createDecipheriv(algorithm, key, iv);
-  var decrypted =
-    decipher.update(encryptedData, "hex", "utf8") + decipher.final("utf8");
-  console.log(decrypted);
-  return decrypted;
-};
+// // Function to decrypt data
+// const decryptData = (encryptedData, iv) => {
+//   const decipher = crypto.createDecipheriv(algorithm, key, iv);
+//   var decrypted =
+//     decipher.update(encryptedData, "hex", "utf8") + decipher.final("utf8");
+//   console.log(decrypted);
+//   return decrypted;
+// };
 
 function validPassword(password, hash, salt) {
   // ----- Had to change pbkdf2Sync in future -----
@@ -103,8 +103,8 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-module.exports.encryptdata = encryptdata;
-module.exports.decryptData = decryptData;
+// module.exports.encryptdata = encryptdata;
+// module.exports.decryptData = decryptData;
 module.exports.validPassword = validPassword;
 module.exports.genPassword = genPassword;
 module.exports.issueJWT = issueJWT;

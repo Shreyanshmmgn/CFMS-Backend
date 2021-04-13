@@ -24,6 +24,11 @@ router.post("/login", login);
 const { forgotPassword } = require("./forgotPassword");
 router.post("/forgotPassword", forgotPassword);
 
+// ------------ Forgot Password ------------
+
+const { sendUserData } = require("./sendUserData");
+router.post("/sendUserData", sendUserData);
+
 // ------------ Change  Password ------------
 
 const { changePassword } = require("./changePassword");
@@ -66,8 +71,30 @@ router.post("/activate/user/:_id", async (req, res) => {
 });
 
 // ------------ Registration Route ------------
+var multer = require("multer");
+var fs = require("fs");
+const upload = multer({ dest: "uploads/" });
 
 const { registration } = require("./registration");
 router.post("/registration", registration);
+
+// (req, res) => {
+//   console.log(req.file);
+//   var tmp_path = req.file.path;
+
+//   /** The original name of the uploaded file
+//       stored in the variable "originalname". **/
+//   var target_path = "uploads/" + req.file.originalname;
+
+//   /** A better way to copy the uploaded file. **/
+//   var src = fs.createReadStream(tmp_path);
+//   var dest = fs.createWriteStream(target_path);
+//   src.pipe(dest);
+//   src.on("end", function () {
+//     res.render("complete");
+//   });
+//   src.on("error", function (err) {
+//     res.render("error");
+//   });
 
 module.exports = router;

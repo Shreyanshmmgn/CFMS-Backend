@@ -1,35 +1,24 @@
 const User = require("../Models/userModel");
 const utils = require("../functionLib/util");
-var multer = require("multer");
 
 exports.registration = async (req, res) => {
-  // {
-  //   name,
-  //   email,
-  //   phoneNumber,
-  //   currentAddress,
-  //   permanentAdress,
-  //   state,
-  //   pincode,
-  //   dob,
-  //   martialStatus,
-  //   occupation,
-  //   monthlyIncome,
-  //   gender,
-  //   picture,
-  // }
+  const { email } = req.body;
   const userData = req.body;
+
+  console.log(email);
 
   try {
     await User.findOne({ email }).then(async (user) => {
-      console.log(user);
-      var newItem = new Item();
+      var newItem = user;
       newItem.userData = userData;
       newItem.userData.picture.contentType = "image/png";
+      console.log(newItem);
       newItem.save();
-      res.status(200).json({ message: " passcword changed" });
+      res
+        .status(200)
+        .json({ message: " User data updated ! registration done" });
     });
   } catch (e) {
-    res.status(422).send(e.message);
+    res.status(422).send("Eroor");
   }
 };
