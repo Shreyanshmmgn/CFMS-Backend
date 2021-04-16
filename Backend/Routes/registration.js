@@ -1,24 +1,23 @@
 const User = require("../Models/userModel");
-const utils = require("../functionLib/util");
+const path = require("path");
 
 exports.registration = async (req, res) => {
-  const { email } = req.body;
+  let { email } = req.body;
   const userData = req.body;
-
-  console.log(email);
-
+  console.log(userData);
+  const image = req.file;
+  const finalPath = `uploads/${image.filename}`;
   try {
     await User.findOne({ email }).then(async (user) => {
       var newItem = user;
       newItem.userData = userData;
-      newItem.userData.picture.contentType = "image/png";
-      console.log(newItem);
+      newItem.userData.image = finalPath;
       newItem.save();
       res
         .status(200)
-        .json({ message: " User data updated ! registration done" });
+        .json({ message: " User data updated ! registration done", finalPath });
     });
   } catch (e) {
-    res.status(422).send("Eroor");
+    res.status(422).json({ message: "Some error occured" });
   }
 };

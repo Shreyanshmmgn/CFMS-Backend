@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 
+app.use("/uploads", express.static("uploads"));
 // Middleware to parse Json
 app.use(express.json());
 // Middleware to parse incoming urlencoded payloads
@@ -20,6 +21,7 @@ require("./Database/database");
 
 // Including all the routes
 const routerPath = require("./Routes/router");
+
 app.use(("/", routerPath));
 
 // Server will be listing to port : 5000

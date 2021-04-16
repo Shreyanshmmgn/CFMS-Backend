@@ -71,30 +71,28 @@ router.post("/activate/user/:_id", async (req, res) => {
 });
 
 // ------------ Registration Route ------------
+
+const app = express();
 var multer = require("multer");
-var fs = require("fs");
-const upload = multer({ dest: "uploads/" });
+app.use(multer);
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "--" + file.originalname);
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  // dest: "uploads/",
+});
 
 const { registration } = require("./registration");
-router.post("/registration", registration);
+router.post("/registration", upload.single("image"), registration);
 
-// (req, res) => {
-//   console.log(req.file);
-//   var tmp_path = req.file.path;
-
-//   /** The original name of the uploaded file
-//       stored in the variable "originalname". **/
-//   var target_path = "uploads/" + req.file.originalname;
-
-//   /** A better way to copy the uploaded file. **/
-//   var src = fs.createReadStream(tmp_path);
-//   var dest = fs.createWriteStream(target_path);
-//   src.pipe(dest);
-//   src.on("end", function () {
-//     res.render("complete");
-//   });
-//   src.on("error", function (err) {
-//     res.render("error");
-//   });
+// ------------ Exporting here------------
 
 module.exports = router;
