@@ -3,6 +3,7 @@ const utils = require("../functionLib/util");
 
 exports.login = (req, res, next) => {
   {
+    let userRegistered = false;
     const email = req.body.email;
     User.findOne({ email })
       .then((user) => {
@@ -17,12 +18,14 @@ exports.login = (req, res, next) => {
           user.salt
         );
         if (isValid) {
+          if (user.userData.name === "") userRegistered = true;
           const tokenObj = utils.issueJWT(user);
           res.status(200).json({
             success: true,
             user: user,
             token: tokenObj,
             msg: "User found!!",
+            userRegistered: userRegistered,
           });
           // .then((user) => {});
         } else {
