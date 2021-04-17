@@ -7,6 +7,7 @@ exports.sendUserData = (req, res, next) => {
 
     User.findOne({ email })
       .then((user) => {
+        console.log("USer : ", user);
         res.status(200).json(user);
       })
       .catch((err) => next(err));

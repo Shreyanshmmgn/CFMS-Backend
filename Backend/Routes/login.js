@@ -7,7 +7,7 @@ exports.login = (req, res, next) => {
     const email = req.body.email;
     User.findOne({ email })
       .then((user) => {
-        console.log("User  : ", user);
+        // console.log("User  : ", user);
         if (!user) {
           console.log("Wong password - 1");
           res.status(401).json({ success: false, msg: "User not found !" });
@@ -18,7 +18,14 @@ exports.login = (req, res, next) => {
           user.salt
         );
         if (isValid) {
-          if (user.userData.name === "") userRegistered = true;
+          if (user.userData.name) userRegistered = true;
+          else userRegistered = false;
+          console.log(
+            "User is resgitered : ",
+            userRegistered,
+            " : ",
+            user.userData.name
+          );
           const tokenObj = utils.issueJWT(user);
           res.status(200).json({
             success: true,

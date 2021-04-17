@@ -4,7 +4,7 @@ const path = require("path");
 exports.registration = async (req, res) => {
   let { email } = req.body;
   const userData = req.body;
-  console.log(userData);
+  console.log("User data : ", userData);
   const image = req.file;
   const finalPath = `uploads/${image.filename}`;
   try {
