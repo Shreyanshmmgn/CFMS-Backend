@@ -5,6 +5,8 @@ const utils = require("../functionLib/util");
 const User = require("../Models/userModel");
 const pendingUser = require("../Models/pendingRequests");
 
+// ------------ Home Route ------------
+
 router.get("/", (req, res) => {
   res.send("Routing workss!! lets get started");
 });
@@ -72,26 +74,8 @@ router.post("/activate/user/:_id", async (req, res) => {
 
 // ------------ Registration Route ------------
 
-const app = express();
-var multer = require("multer");
-app.use(multer);
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "--" + file.originalname);
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  // dest: "uploads/",
-});
-
 const { registration } = require("./registration");
-router.post("/registration", upload.single("image"), registration);
+router.post("/registration", registration);
 
 // ------------ Exporting here------------
 

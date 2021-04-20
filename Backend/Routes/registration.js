@@ -4,7 +4,6 @@ const path = require("path");
 exports.registration = async (req, res) => {
   let { email } = req.body;
   const userData = req.body;
-  console.log("User data : ", userData);
   // const image = req.file;
   try {
     await User.findOne({ email }).then(async (user) => {
