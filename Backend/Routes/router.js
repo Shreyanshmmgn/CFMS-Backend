@@ -26,7 +26,7 @@ router.post("/login", login);
 const { forgotPassword } = require("./forgotPassword");
 router.post("/forgotPassword", forgotPassword);
 
-// ------------ Forgot Password ------------
+// ------------ sendUserdata Password ------------
 
 const { sendUserData } = require("./sendUserData");
 router.post("/sendUserData", sendUserData);
@@ -76,6 +76,10 @@ router.post("/activate/user/:_id", async (req, res) => {
 
 const { registration } = require("./registration");
 router.post("/registration", registration);
+
+// ------------ Protected Route ------------
+
+router.post("/protected", utils.authMiddleware(), (req, res) => {});
 
 // ------------ Exporting here------------
 

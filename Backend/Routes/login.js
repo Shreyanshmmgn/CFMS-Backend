@@ -7,6 +7,7 @@ exports.login = (req, res, next) => {
     const email = req.body.email;
     User.findOne({ email })
       .then((user) => {
+        
         // console.log("User  : ", user);
         if (!user) {
           console.log("Wong password - 1");
