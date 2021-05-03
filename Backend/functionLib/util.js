@@ -67,7 +67,7 @@ const authMiddleware = (req, res, next) => {
     //* will implment json web token verification here
     try {
       const verification = jsonwebtoken.verify(tokenParts[1], PUB_KEY, {
-        afflgorithms: "RS256",
+        algorithms: "RS256",
       });
       req.jwt = verification;
       next();

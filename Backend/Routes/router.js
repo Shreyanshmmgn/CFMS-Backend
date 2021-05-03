@@ -5,6 +5,8 @@ const utils = require("../functionLib/util");
 const User = require("../Models/userModel");
 const pendingUser = require("../Models/pendingRequests");
 
+const authMiddleware = require("../functionLib/authenticationMiddleware");
+
 // ------------ Home Route ------------
 
 router.get("/", (req, res) => {
@@ -54,12 +56,9 @@ router.post("/activate/user/:_id", async (req, res) => {
         .save()
         .then((user) => {
           //   const id = user._id;
-          const jwt = utils.issueJWT(user);
           res.json({
             success: true,
             user: user,
-            token: jwt.token,
-            expiersIn: jwt.expires,
           });
         })
         .catch((err) => console.log(err));
@@ -79,7 +78,9 @@ router.post("/registration", registration);
 
 // ------------ Protected Route ------------
 
-router.post("/protected", utils.authMiddleware(), (req, res) => {});
+router.post("/protected", utils.authMiddleware, (req, res) => {
+  console.log("JWT : ", req.jwt);
+});
 
 // ------------ Exporting here------------
 
