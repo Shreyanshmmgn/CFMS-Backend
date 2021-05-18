@@ -1,22 +1,12 @@
 const User = require("../Models/userModel");
-const pendingUser = require("../Models/pendingRequests");
 const { changePasswordMail } = require("../functionLib/mailer");
 
 exports.forgotPassword = async (req, res) => {
   const { email } = req.body;
-  console.log(email);
   try {
     const checkUser = await User.findOne({ email });
-    const checkPendingUser = await pendingUser.findOne({ email });
-    // const checkUser = false;
-    // const checkPendingUser = false;
 
-    if (checkPendingUser) {
-      return res.status(422).json({
-        success: false,
-        msg: " User had not verified this email id ",
-      });
-    } else if (checkUser) {
+    if (checkUser) {
       // 422 for unprocessable entity
 
       await changePasswordMail({
