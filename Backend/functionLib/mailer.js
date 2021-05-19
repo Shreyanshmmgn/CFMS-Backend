@@ -1,16 +1,4 @@
 const nodeMailer = require("nodemailer");
-const fs = require("fs");
-
-// const transporterF = () => {
-//   nodeMailer.createTransport({
-//     service: "Gmail",
-//     auth: {
-//       user: process.env.GOOGLE_USER,
-//       pass: process.env.GOOGLE_PASSWORD,
-//       // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
-//     },
-//   });
-// };
 
 sendConfirmationEmail = ({ email, _id }) => {
   console.log(" Function called mail !");

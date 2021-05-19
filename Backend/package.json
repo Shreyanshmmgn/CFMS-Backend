@@ -9,6 +9,7 @@
   "author": "Shreyansh Mamgain",
   "license": "ISC",
   "dependencies": {
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",

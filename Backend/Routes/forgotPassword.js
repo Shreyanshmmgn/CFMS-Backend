@@ -14,12 +14,11 @@ exports.forgotPassword = async (req, res) => {
       });
       return res.status(200).json({ success: true, msg: " User found " });
     } else {
-      console.log("No user found with this email id !! ");
       return res
         .status(422)
         .json({ success: false, msg: " No user with this id  " });
     }
   } catch (e) {
-    res.status(422).send(e.message);
+    res.status(422).send((e.message = "Some error occured"));
   }
 };
