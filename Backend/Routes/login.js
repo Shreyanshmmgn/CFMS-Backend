@@ -27,14 +27,13 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
+
+            res.cookie("token", tokenObj, { httpOnly: true });
             res.status(200).json({
               success: true,
-              user: user,
-              token: tokenObj,
               msg: "User found!!",
               userRegistered: userRegistered,
             });
-            // .then((user) => {});
           } else {
             console.log("Wong password - 2");
             res.status(401).json({

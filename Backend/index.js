@@ -16,6 +16,10 @@ dotenv.config();
 const cors = require("cors");
 app.use(cors());
 
+//To use cookies
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 // Incluing database
 require("./Database/database");
 

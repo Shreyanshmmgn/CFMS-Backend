@@ -3,6 +3,7 @@ const jsonwebtoken = require("jsonwebtoken");
 require("dotenv").config();
 
 const authMiddleware = (req, res, next) => {
+  console.log(req.cookies);
   const tokenParts = req.headers.authorization.split(" ");
   if (
     tokenParts[0] === "Bearer" &&

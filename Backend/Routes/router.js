@@ -79,7 +79,8 @@ router.post("/registration", registration);
 // ------------ Protected Route ------------
 
 router.post("/protected", utils.authMiddleware, (req, res) => {
-  console.log("JWT : ", req.jwt);
+  console.log("Protected route can be accessed ");
+  res.json({ access: true });
 });
 
 // ------------ Exporting here------------
