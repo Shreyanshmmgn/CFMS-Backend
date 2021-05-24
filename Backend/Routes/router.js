@@ -82,6 +82,10 @@ router.post("/protected", utils.authMiddleware, (req, res) => {
   console.log("Protected route can be accessed ");
   res.json({ access: true });
 });
+// ------------ LogoutRoute ------------
+
+const { logout } = require("./logout");
+router.post("/logout", logout);
 
 // ------------ Exporting here------------
 

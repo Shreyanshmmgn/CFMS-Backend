@@ -14,7 +14,7 @@ dotenv.config();
 
 // To let us make req for one site to another and one localhost to another
 const cors = require("cors");
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 //To use cookies
 const cookieParser = require("cookie-parser");
