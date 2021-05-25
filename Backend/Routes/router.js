@@ -79,8 +79,12 @@ router.post("/registration", registration);
 // ------------ Protected Route ------------
 
 router.post("/protected", utils.authMiddleware, (req, res) => {
-  console.log("Protected route can be accessed ");
-  res.json({ access: true });
+  console.log("Status : ", res.status);
+
+  if (res.status == 200) {
+    console.log("Protected route can be accessed ");
+    res.status(200).json({ access: true });
+  }
 });
 // ------------ LogoutRoute ------------
 

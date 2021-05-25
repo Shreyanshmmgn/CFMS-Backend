@@ -33,7 +33,6 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
-            console.log(Date(new Date().getTime() + 1000 * 1000));
             res.status(202).cookie("token", tokenObj.token, {
               path: "/",
               httpOnly: true,

@@ -58,7 +58,13 @@ function issueJWT(user) {
 }
 
 const authMiddleware = (req, res, next) => {
-  const tokenParts = req.cookies.token.token.split(" ");
+  if (req.cookies.token == undefined) {
+    console.log("Cookes is not there !!!!");
+    return res
+      .status(401)
+      .json({ success: false, msg: "You are not authoriezed !" });
+  }
+  const tokenParts = req.cookies.token.split(" ");
   if (
     tokenParts[0] === "Bearer" &&
     tokenParts[1].match(/\S+\.\S+\.\S+/) !== null
