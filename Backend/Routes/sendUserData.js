@@ -1,5 +1,4 @@
 const User = require("../Models/userModel");
-const utils = require("../functionLib/util");
 
 exports.sendUserData = (req, res, next) => {
   {

@@ -71,21 +71,26 @@ router.post("/activate/user/:_id", async (req, res) => {
   }
 });
 
-// ------------ Registration Route ------------
+// ------------ Registration Route ------------ Protected
 
 const { registration } = require("./registration");
-router.post("/registration", registration);
+router.post("/registration", utils.authMiddleware, registration);
+
+// ------------ Registration Route ------------ Protected
+
+const { dashboard } = require("./registration");
+router.post("/dashboard", utils.authMiddleware, registration);
 
 // ------------ Protected Route ------------
 
-router.post("/protected", utils.authMiddleware, (req, res) => {
-  console.log("Status : ", res.status);
+// router.post("/protected", utils.authMiddleware, (req, res) => {
+//   console.log("Status : ", res.status);
 
-  if (res.status == 200) {
-    console.log("Protected route can be accessed ");
-    res.status(200).json({ access: true });
-  }
-});
+//   if (res.status == 200) {
+//     console.log("Protected route can be accessed ");
+//     res.status(200).json({ access: true });
+//   }
+// });
 // ------------ LogoutRoute ------------
 
 const { logout } = require("./logout");
