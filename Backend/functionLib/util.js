@@ -58,6 +58,7 @@ function issueJWT(user) {
 }
 
 const authMiddleware = (req, res, next) => {
+  console.log("Checking if token are right !!");
   if (req.cookies.token == undefined) {
     console.log("Cookes is not there !!!!");
     return res

@@ -1,10 +1,18 @@
 const User = require("../Models/userModel");
-const path = require("path");
 
 exports.registration = async (req, res) => {
+  console.log("Inside Registration : ", req.body);
+
+  if (Object.keys(req.body).length === 0) {
+    res.status(201).json({ msg: "No data found ", success: true });
+    return;
+  }
+
+  console.log(email);
+
   let { email } = req.body;
   const userData = req.body;
-  // const image = req.file;
+
   try {
     await User.findOne({ email }).then(async (user) => {
       var newItem = user;
