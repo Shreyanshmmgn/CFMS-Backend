@@ -19,11 +19,6 @@ exports.login = (req, res, next) => {
             user.salt
           );
           if (isValid) {
-            //
-            //
-            //
-            //
-            //
             if (user.userData.name) userRegistered = true;
             else userRegistered = false;
             console.log(
@@ -33,27 +28,15 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
-            res.status(202).cookie("token", tokenObj.token, {
-              path: "/",
-              httpOnly: true,
-              secure: true,
-              expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-            });
-            // .json({ userRegistered: true });
             res
               .status(202)
-              .cookie("Expires", tokenObj.expires, {
+              .cookie("token", tokenObj.token, {
                 path: "/",
                 httpOnly: true,
                 secure: true,
                 expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
               })
               .json({ userRegistered });
-            //
-            //
-            //
-            //
-            //
           } else {
             console.log("Wong password - 2");
             res.status(401).json({

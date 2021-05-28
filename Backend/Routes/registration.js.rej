@@ -1,9 +1,0 @@
-diff a/Backend/Routes/registration.js b/Backend/Routes/registration.js	(rejected hunks)
-@@ -4,7 +4,6 @@
- exports.registration = async (req, res) => {
-   let { email } = req.body;
-   const userData = req.body;
--  console.log("User data : ", userData);
-   // const image = req.file;
-   try {
-     await User.findOne({ email }).then(async (user) => {

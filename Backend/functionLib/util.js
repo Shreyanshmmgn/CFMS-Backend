@@ -4,17 +4,11 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 
-// const PRIV_KEY = process.env.PRIV_KEY;
-// const PUB_KEY = process.env.PUB_KEY;
-
 const pathToKey = path.join(__dirname, "..", "priv.pem");
 const pathToPubKey = path.join(__dirname, "..", "pub.pem");
 
 const PRIV_KEY = fs.readFileSync(pathToKey, "utf8");
 const PUB_KEY = fs.readFileSync(pathToPubKey, "utf8");
-
-// const algorithm = "aes192";
-// const password = "Hey you this is password";
 
 function validPassword(password, hash, salt) {
   // ----- Had to change pbkdf2Sync in future -----
@@ -88,13 +82,24 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-// module.exports.encryptdata = encryptdata;
-// module.exports.decryptData = decryptData;
 module.exports.validPassword = validPassword;
 module.exports.genPassword = genPassword;
 module.exports.issueJWT = issueJWT;
 module.exports.authMiddleware = authMiddleware;
 
+//
+//
+//
+//
+
+// const PRIV_KEY = process.env.PRIV_KEY;
+// const PUB_KEY = process.env.PUB_KEY;
+
+// const algorithm = "aes192";
+// const password = "Hey you this is password";
+
+// module.exports.encryptdata = encryptdata;
+// module.exports.decryptData = decryptData;
 // const key = crypto.scryptSync(password, "salt", 24); //creating key
 // // let iv;
 // let iv = crypto.randomBytes(16);

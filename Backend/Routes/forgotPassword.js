@@ -7,6 +7,7 @@ exports.forgotPassword = async (req, res) => {
     const checkUser = await User.findOne({ email });
 
     if (checkUser) {
+      
       // 422 for unprocessable entity
 
       await changePasswordMail({
