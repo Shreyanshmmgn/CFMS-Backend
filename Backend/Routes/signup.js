@@ -8,6 +8,7 @@ exports.signup = async (req, res) => {
   try {
     const checkUser = await User.findOne({ email });
     const checkPendingUser = await pendingUser.findOne({ email });
+
     // const checkUser = false;
     // const checkPendingUser = false;
 
@@ -32,8 +33,7 @@ exports.signup = async (req, res) => {
     });
 
     await newPUser.save();
-    res.json({ message: "You have been registered. in pending requests" });
-    console.log("You have been registered. in pending requests");
+    res.json({ message: "You have been registered please verify your mail" });
   } catch (e) {
     res.status(422).send(e.message);
   }
