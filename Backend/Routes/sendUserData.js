@@ -6,7 +6,7 @@ exports.sendUserData = (req, res, next) => {
 
     User.findOne({ _uid })
       .then((user) => {
-        console.log("User : ", user);
+        console.log("User Name : ", user.userData.name);
         if (user == null) {
           res.status(404).json({ user, msg: " User Not Found" });
         } else {
