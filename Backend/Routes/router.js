@@ -23,7 +23,7 @@ router.post("/login", login);
 const { forgotPassword } = require("./forgotPassword");
 router.post("/forgotPassword", forgotPassword);
 
-//* ------------ sendUserdata Password ------------
+//* ------------ Send User Data Route ------------
 
 const { sendUserData } = require("./sendUserData");
 router.post("/sendUserData", sendUserData);
