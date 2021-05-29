@@ -26,7 +26,7 @@ router.post("/forgotPassword", forgotPassword);
 //* ------------ Send User Data Route ------------
 
 const { sendUserData } = require("./sendUserData");
-router.post("/sendUserData", sendUserData);
+router.post("/sendUserData", utils.authMiddleware, sendUserData);
 
 //* ------------ Change  Password ------------
 

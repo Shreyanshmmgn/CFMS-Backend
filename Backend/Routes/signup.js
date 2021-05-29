@@ -33,7 +33,9 @@ exports.signup = async (req, res) => {
     });
 
     await newPUser.save();
-    res.json({ message: "You have been registered please verify your mail" });
+    res
+      .status(200)
+      .json({ message: "You have been registered please verify your mail" });
   } catch (e) {
     res.status(422).send(e.message);
   }
