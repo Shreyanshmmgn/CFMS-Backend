@@ -6,8 +6,8 @@ sendConfirmationEmail = ({ email, _id }) => {
     const transporter = nodeMailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.GOOGLE_USER,
-        pass: process.env.GOOGLE_PASSWORD,
+        user: "smmgn7934@gmail.com",
+        pass: "Hr26aj7934@srishti",
         // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
       },
     });
