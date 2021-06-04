@@ -4,7 +4,7 @@ const utils = require("../functionLib/util");
 
 //* ------------ Home Route ------------
 
-router.post("/api", (req, res) => {
+router.post("/", (req, res) => {
   res.send("Routing workss!! lets get started");
 });
 
