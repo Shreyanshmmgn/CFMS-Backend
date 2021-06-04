@@ -15,12 +15,10 @@ exports.registration = async (req, res) => {
       var newItem = user;
       newItem.userData = userData;
       newItem.save();
-      res
-        .status(200)
-        .json({
-          message: " User data updated ! registration done",
-          success: true,
-        });
+      res.status(200).json({
+        message: " User data updated ! registration done",
+        success: true,
+      });
     });
   } catch (e) {
     console.log(e);
