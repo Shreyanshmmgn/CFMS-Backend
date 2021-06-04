@@ -21,7 +21,7 @@ router.post("/api/login", login);
 //* ------------ Forgot Password ------------
 
 const { forgotPassword } = require("./forgotPassword");
-router.post("/api/orgotPassword", forgotPassword);
+router.post("/api/forgotPassword", forgotPassword);
 
 //* ------------ Send User Data Route ------------
 
