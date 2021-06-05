@@ -13,13 +13,18 @@ dotenv.config();
 
 // To let us make req for one site to another and one localhost to another
 const cors = require("cors");
-app.use(
-  cors({
-    allowedHeaders: true,
-    credentials: true,
-    origin: "https://main.d27jkfy1s4oxp5.amplifyapp.com/api/login",
-  })
-);
+app.use(cors());
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://main.d27jkfy1s4oxp5.amplifyapp.com/"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 //To use cookies
 const cookieParser = require("cookie-parser");
