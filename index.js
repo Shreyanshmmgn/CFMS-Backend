@@ -15,9 +15,9 @@ dotenv.config();
 const cors = require("cors");
 app.use(
   cors({
-    allowedHeaders : true,
+    allowedHeaders: true,
     credentials: true,
-    origin: "https://main.d27jkfy1s4oxp5.amplifyapp.com/",
+    origin: "https://main.d27jkfy1s4oxp5.amplifyapp.com/api/login",
   })
 );
 
