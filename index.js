@@ -2,7 +2,6 @@
 const express = require("express");
 const app = express();
 
-app.use("/uploads", express.static("uploads"));
 // Middleware to parse Json
 app.use(express.json());
 // Middleware to parse incoming urlencoded payloads
@@ -14,7 +13,13 @@ dotenv.config();
 
 // To let us make req for one site to another and one localhost to another
 const cors = require("cors");
-app.use(cors());
+app.use(
+  cors({
+    allowedHeaders : true,
+    credentials: true,
+    origin: "https://main.d27jkfy1s4oxp5.amplifyapp.com/",
+  })
+);
 
 //To use cookies
 const cookieParser = require("cookie-parser");
