@@ -13,16 +13,31 @@ dotenv.config();
 
 // To let us make req for one site to another and one localhost to another
 const cors = require("cors");
-app.use(cors());
-app.use((req, res, next) => {
+
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://main.d27jkfy1s4oxp5.amplifyapp.com/"
+    "https://main.d27jkfy1s4oxp5.amplifyapp.com"
   );
-  res.header(
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "X-Requested-With,content-type"
   );
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
+  // Pass to next layer of middleware
   next();
 });
 
