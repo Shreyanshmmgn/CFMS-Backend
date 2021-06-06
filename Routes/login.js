@@ -29,28 +29,30 @@ exports.login = (req, res, next) => {
             );
             const tokenObj = utils.issueJWT(user);
             console.log("Token created");
-            res.status(200).cookie("token", tokenObj.token, {
-              path: "/",
-              httpOnly: true,
-              secure: true,
-              expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-              domain: ".main.d27jkfy1s4oxp5.amplifyapp.com",
-            });
             res
               .status(200)
               .cookie(
-                "uid",
-                user._id,
+                "token",
+                tokenObj.token,
+                "http://main.d27jkfy1s4oxp5.amplifyapp.com",
                 {
                   path: "/",
                   httpOnly: true,
                   secure: true,
                   expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-                },
-                {
                   domain: ".main.d27jkfy1s4oxp5.amplifyapp.com",
                 }
-              )
+              );
+            console.log("Cookie send ");
+            res
+              .status(200)
+              .cookie("uid", user._id, ".main.d27jkfy1s4oxp5.amplifyapp.com", {
+                path: "/",
+                httpOnly: true,
+                secure: true,
+                expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+                domain: ".main.d27jkfy1s4oxp5.amplifyapp.com",
+              })
               .json({ userRegistered });
           } else {
             console.log("Wong password - 2");
