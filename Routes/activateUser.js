@@ -1,3 +1,6 @@
+const pendingUser = require("../Models/pendingRequests");
+const User = require("../Models/userModel");
+
 exports.activateUser = async (req, res) => {
   const { _id } = req.params;
   console.log(" Request form axios made  ");

@@ -1,13 +1,12 @@
 const nodeMailer = require("nodemailer");
 
 sendConfirmationEmail = ({ email, _id }) => {
-  console.log(" Function called mail !");
   return new Promise((res, rej) => {
     const transporter = nodeMailer.createTransport({
       service: "Gmail",
       auth: {
-        user: "norval.mcdermott83@ethereal.email",
-        pass: "n92jH6vTHKahQg6DbA",
+        user: "dnotdevil@gmail.com",
+        pass: "IronManIsBestAvenger@1",
         // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
       },
     });
@@ -18,7 +17,7 @@ sendConfirmationEmail = ({ email, _id }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>Thank you for registering into our Application. Just one last step left...</p>
-        <p>To activate your account please follow this link: <a target="_" href="${process.env.DOMAIN}/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
+        <p>To activate your account please follow this link: <a target="_" href="${process.env.DOMAIN2}/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
         <p>Cheers</p>
         <p>CFMS</p>
       `,
@@ -32,7 +31,8 @@ sendConfirmationEmail = ({ email, _id }) => {
         res(info);
       }
     });
-    console.log("Mail send  !!");
+  }).catch((err) => {
+    console.log(err);
   });
 };
 

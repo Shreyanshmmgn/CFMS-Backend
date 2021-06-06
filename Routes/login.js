@@ -22,7 +22,7 @@ exports.login = (req, res, next) => {
             if (user.userData.name) userRegistered = true;
             else userRegistered = false;
             console.log(
-              "User is resgitered : ",
+              "Login -  User is resgitered : ",
               userRegistered,
               " : ",
               user.userData.name
