@@ -41,8 +41,8 @@ changePasswordMail = ({ email }) => {
     const transporter = nodeMailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.GOOGLE_USER,
-        pass: process.env.GOOGLE_PASSWORD,
+        user: "dnotdevil@gmail.com",
+        pass: "IronManIsBestAvenger@1",
         // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
       },
     });
@@ -53,7 +53,7 @@ changePasswordMail = ({ email }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>To change your password  click on the below mentioned link</p>
-        <p> <a target="_" href="${process.env.DOMAIN}/changePassword/${email}">${process.env.DOMAIN}/forogtPassword</a></p>
+        <p> <a target="_" href="${process.env.DOMAIN2}/changePassword/${email}">${process.env.DOMAIN}/forogtPassword</a></p>
         <p>Regards</p>
         <p>CFMS</p>
       `,
