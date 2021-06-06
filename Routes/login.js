@@ -36,12 +36,19 @@ exports.login = (req, res, next) => {
             });
             res
               .status(200)
-              .cookie("uid", user._id, {
-                path: "/",
-                httpOnly: true,
-                secure: true,
-                expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-              })
+              .cookie(
+                "uid",
+                user._id,
+                {
+                  path: "/",
+                  httpOnly: true,
+                  secure: true,
+                  expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+                },
+                {
+                  domain: "http://localhost:3000",
+                }
+              )
               .json({ userRegistered });
           } else {
             console.log("Wong password - 2");
