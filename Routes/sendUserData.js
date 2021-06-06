@@ -2,11 +2,10 @@ const User = require("../Models/userModel");
 
 exports.sendUserData = (req, res, next) => {
   {
-    const _uid = req.cookies.uid;
+    const _id = req.cookies.uid;
 
-    User.findOne({ _uid })
+    User.findOne({ _id })
       .then((user) => {
-        console.log("User Name : ", user.userData.name);
         if (user == null) {
           res.status(404).json({ user, msg: " User Not Found" });
         } else {
