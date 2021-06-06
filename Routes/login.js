@@ -28,11 +28,13 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
+            console.log("Token ", tokenObj);
             res.status(200).cookie("token", tokenObj.token, {
               path: "/",
               httpOnly: true,
               secure: true,
               expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+              domain: "https://main.d27jkfy1s4oxp5.amplifyapp.com",
             });
             res
               .status(200)
@@ -41,6 +43,7 @@ exports.login = (req, res, next) => {
                 httpOnly: true,
                 secure: true,
                 expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+                domain: "https://main.d27jkfy1s4oxp5.amplifyapp.com",
               })
               .json({ userRegistered });
           } else {
