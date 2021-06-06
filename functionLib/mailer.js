@@ -17,7 +17,7 @@ sendConfirmationEmail = ({ email, _id }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>Thank you for registering into our Application. Just one last step left...</p>
-        <p>To activate your account please follow this link: <a target="_" href="${process.env.DOMAIN2}/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
+        <p>To activate your account please follow this link: <a target="_" href="${process.env.DOMAIN}/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
         <p>Cheers</p>
         <p>CFMS</p>
       `,
