@@ -28,7 +28,7 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
-            console.log("Token ", tokenObj);
+            console.log("Token created");
             res.status(200).cookie("token", tokenObj.token, {
               path: "/",
               httpOnly: true,
@@ -47,7 +47,7 @@ exports.login = (req, res, next) => {
                   expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
                 },
                 {
-                  domain: "https://main.d27jkfy1s4oxp5.amplifyapp.com",
+                  domain: "main.d27jkfy1s4oxp5.amplifyapp.com",
                 }
               )
               .json({ userRegistered });
