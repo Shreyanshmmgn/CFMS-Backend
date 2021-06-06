@@ -34,6 +34,7 @@ exports.login = (req, res, next) => {
               httpOnly: true,
               secure: true,
               expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+              domain: ".main.d27jkfy1s4oxp5.amplifyapp.com",
             });
             res
               .status(200)
@@ -47,7 +48,7 @@ exports.login = (req, res, next) => {
                   expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
                 },
                 {
-                  domain: "main.d27jkfy1s4oxp5.amplifyapp.com",
+                  domain: ".main.d27jkfy1s4oxp5.amplifyapp.com",
                 }
               )
               .json({ userRegistered });
