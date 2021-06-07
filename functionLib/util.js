@@ -45,6 +45,8 @@ function issueJWT(user) {
     algorithm: "RS256",
   });
 
+  console.log("Tokens sent - util.js");
+
   return {
     token: "Bearer " + signedToken,
     expires: expiresIn,
