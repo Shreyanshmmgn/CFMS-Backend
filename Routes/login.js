@@ -28,11 +28,13 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
+            console.log("Token created");
             res.status(200).cookie("token", tokenObj.token, {
               path: "/",
               httpOnly: true,
               secure: true,
               expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+              sameSite: "None",
             });
             res
               .status(200)
@@ -41,6 +43,7 @@ exports.login = (req, res, next) => {
                 httpOnly: true,
                 secure: true,
                 expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
+                sameSite: "None",
               })
               .json({ userRegistered });
           } else {
