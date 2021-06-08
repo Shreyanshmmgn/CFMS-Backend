@@ -44,6 +44,9 @@ const signUpTemplate = new schema({
     gender: { type: String },
     imageUrl: { type: String },
   },
+  chitData: {
+    pid: [String],
+  },
 });
 // Document
 

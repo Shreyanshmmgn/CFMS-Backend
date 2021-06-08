@@ -28,22 +28,21 @@ exports.login = (req, res, next) => {
               user.userData.name
             );
             const tokenObj = utils.issueJWT(user);
-            console.log("Token created");
-            res.status(200).cookie("token", tokenObj.token, {
-              path: "/",
-              httpOnly: true,
-              secure: true,
-              expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-              sameSite: "None",
-            });
             res
               .status(200)
-              .cookie("uid", user._id, {
+              .cookie("token", tokenObj.token, "http://localhost:3000", {
                 path: "/",
                 httpOnly: true,
                 secure: true,
                 expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
-                sameSite: "None",
+              });
+            res
+              .status(200)
+              .cookie("uid", user._id, "http://localhost:3000", {
+                path: "/",
+                httpOnly: true,
+                secure: true,
+                expires: new Date(new Date().getTime() + 24 * 60 * 60 * 1000),
               })
               .json({ userRegistered });
           } else {

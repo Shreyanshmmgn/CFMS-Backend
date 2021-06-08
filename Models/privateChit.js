@@ -8,41 +8,31 @@ const privateChit = new schema({
     required: true,
   },
   totalMembers: {
-    type: String,
-    required: true,
-    unique: true,
+    type: Number,
   },
   amount: {
-    type: String,
-    required: true,
+    type: Number,
   },
   timePeriod: {
     type: String,
-    required: true,
   },
   fundSize: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
   commission: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
   startDate: {
-    type: Date,
-    default: Date.now,
+    type: String,
   },
   maximumBid: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
   monthlyInstallment: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
   minimumInstallment: {
-    type: Date,
-    default: Date.now,
+    type: Number,
   },
 });
 // Document
