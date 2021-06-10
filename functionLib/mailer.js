@@ -17,7 +17,7 @@ sendConfirmationEmail = ({ email, _id }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>Thank you for registering into our Application. Just one last step left...</p>
-        <p>To activate your account please follow this link: <a target="_" href="http://localhost:5000/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
+        <p>To activate your account please follow this link: <a target="_" href="http://localhost:3000/api/activate/user/${_id}">${process.env.DOMAIN}/activate </a></p>
         <p>Cheers</p>
         <p>CFMS</p>
       `,
@@ -53,7 +53,7 @@ changePasswordMail = ({ email }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>To change your password  click on the below mentioned link</p>
-        <p> <a target="_" href="${process.env.DOMAIN}/changePassword/${email}">${process.env.DOMAIN}/forogtPassword</a></p>
+        <p> <a target="_" href="${process.env.DOMAIN}/api/changePassword/${email}">${process.env.DOMAIN}/forogtPassword</a></p>
         <p>Regards</p>
         <p>CFMS</p>
       `,

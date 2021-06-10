@@ -14,7 +14,7 @@ exports.privateChitRegistration = async (req, res) => {
 
   try {
     await User.findOneAndUpdate({ uid }).then(async (user) => {
-      if (user.privateChitData.length > 0) {
+      if (user.privateChitData.length > 1) {
         return res.status(400).json({
           message: "User cant make any more private chits for this month ",
           success: false,
