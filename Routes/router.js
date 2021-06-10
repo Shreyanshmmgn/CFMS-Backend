@@ -44,12 +44,21 @@ router.post("/api/activate/user/:_id", activateUser);
 const { registration } = require("./registration");
 router.post("/api/registration", utils.authMiddleware, registration);
 
+//* ------------ Private Chit Route ------------ Protected
 
-
-//* ------------ Private Chit Registration Route ------------ Protected
+//* ------------ Chit Registration Route ------------ Protected
 
 const { privateChitRegistration } = require("../Privatechit/registerNewChit");
-router.post("/api/registerPrivateChit", privateChitRegistration);
+router.post(
+  "/api/registerPrivateChit",
+  utils.authMiddleware,
+  privateChitRegistration
+);
+
+//* ------------ Adding New Members Route ------------ Protected
+
+const { addNewMembers } = require("../Privatechit/addNewMember");
+router.post("/api/addNewMembers", utils.authMiddleware, addNewMembers);
 
 //* ------------ LogoutRoute ------------
 

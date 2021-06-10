@@ -54,13 +54,14 @@ function issueJWT(user) {
 }
 
 const authMiddleware = (req, res, next) => {
-  console.log("Checking if token are right !!");
+  console.log("Checking if token is right !!");
   if (req.cookies.token == undefined) {
     console.log("Cookes is not there !!!!");
     return res
       .status(401)
       .json({ success: false, msg: "You are not authoriezed !" });
   }
+  console.log("token is correct !!");
   const tokenParts = req.cookies.token.split(" ");
   if (
     tokenParts[0] === "Bearer" &&

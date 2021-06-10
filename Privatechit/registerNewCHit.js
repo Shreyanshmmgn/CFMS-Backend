@@ -9,6 +9,7 @@ exports.privateChitRegistration = async (req, res) => {
   let uid = req.cookies.uid;
   let privateChitData = req.body;
   privateChitData.chitType = "Private";
+  privateChitData.memberType = "Owner";
 
   console.log("Private Chit data : ", privateChitData);
 
