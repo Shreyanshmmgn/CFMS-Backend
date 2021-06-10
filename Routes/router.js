@@ -44,7 +44,7 @@ router.post("/api/activate/user/:_id", activateUser);
 const { registration } = require("./registration");
 router.post("/api/registration", utils.authMiddleware, registration);
 
-//* ------------ Dashboard Route ------------ Protected
+
 
 //* ------------ Private Chit Registration Route ------------ Protected
 
