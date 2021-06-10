@@ -46,8 +46,10 @@ router.post("/api/registration", utils.authMiddleware, registration);
 
 //* ------------ Dashboard Route ------------ Protected
 
-const { dashboard } = require("./registration");
-router.post("/api/dashboard", utils.authMiddleware, registration);
+//* ------------ Private Chit Registration Route ------------ Protected
+
+const { privateChitRegistration } = require("../Privatechit/registerNewChit");
+router.post("/api/registerPrivateChit", privateChitRegistration);
 
 //* ------------ LogoutRoute ------------
 
