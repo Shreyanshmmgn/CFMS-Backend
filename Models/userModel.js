@@ -45,8 +45,9 @@ const signUpTemplate = new schema({
     imageUrl: { type: String },
   },
   publicChitData: { type: Array, default: [] },
-  privateChitData: { type: Array, default: [] },
+  privateChitData: {},
   memberDetails: { type: Array, default: [] },
+  roundDetails: { type: String },
 });
 // Document
 
