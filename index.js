@@ -16,7 +16,10 @@ const cors = require("cors");
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://main.d27jkfy1s4oxp5.amplifyapp.com"
+  );
 
   // Request methods you wish to allow
   res.setHeader(
