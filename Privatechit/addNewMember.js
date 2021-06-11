@@ -17,6 +17,12 @@ exports.addNewMembers = async (req, res) => {
         await addMemberMail({ email: emailId, uid: uid, name: user.userName });
       });
 
+      newMembers.push({
+        firstName: user.userName,
+        emailId: user.email,
+        Role: "Owner",
+        id: uid,
+      });
       user.memberDetails.push(newMembers);
       user.save();
       res.status(200).json({

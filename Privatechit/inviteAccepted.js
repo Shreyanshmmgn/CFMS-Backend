@@ -7,20 +7,16 @@ exports.inviteAccepted = async (req, res) => {
   let privateChitData;
   let memberDetails;
   let roundDetails;
-  console.log(uid);
   try {
     await User.findOne({ _id: uid }).then(async (user) => {
-      console.log("User 1 : ", user);
       privateChitData = user.privateChitData;
       memberDetails = user.memberDetails;
       roundDetails = user.roundDetails;
-      console.log("Data 1: ", privateChitData);
     });
     await User.findOne({ _id: uidCurrentMember }).then(async (user2) => {
       user2.memberDetails = memberDetails;
       user2.privateChitData = privateChitData;
       user2.roundDetails = roundDetails;
-      console.log("New member : ", user2);
       user2.save();
       res.status(200).json({
         message: " User data updated ! Member Added successfully ",

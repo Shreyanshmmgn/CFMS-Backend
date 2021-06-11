@@ -68,6 +68,11 @@ router.post("/api/addNewMembers", utils.authMiddleware, addNewMembers);
 const { inviteAccepted } = require("../Privatechit/inviteAccepted");
 router.post("/api/inviteAccepted/:uid", inviteAccepted);
 
+//* ------------ View Members Route ------------ Protected
+
+const { sendMemberData } = require("../Privatechit/sendMemberData");
+router.post("/api/sendMemberData/:email", sendMemberData);
+
 //* ------------ LogoutRoute ------------
 
 const { logout } = require("./logout");
