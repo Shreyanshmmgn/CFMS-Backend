@@ -66,7 +66,7 @@ const { addNewMembers } = require("../Privatechit/addNewMember");
 router.post("/api/addNewMembers", utils.authMiddleware, addNewMembers);
 
 const { inviteAccepted } = require("../Privatechit/inviteAccepted");
-router.post("/api/inviteAccepted/:email", inviteAccepted);
+router.post("/api/inviteAccepted/:uid", inviteAccepted);
 
 //* ------------ LogoutRoute ------------
 

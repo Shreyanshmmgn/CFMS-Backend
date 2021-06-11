@@ -10,13 +10,13 @@ exports.addNewMembers = async (req, res) => {
   let uid = req.cookies.uid;
   let newMembers = req.body;
 
-  newMembers.map(async (mem) => {
-    let emailId = mem.emailId;
-    await addMemberMail({ email: emailId });
-  });
-
   try {
     await User.findOneAndUpdate({ uid }).then(async (user) => {
+      newMembers.map(async (mem) => {
+        let emailId = mem.emailId;
+        await addMemberMail({ email: emailId, uid: uid, name: user.userName });
+      });
+
       user.memberDetails.push(newMembers);
       user.save();
       res.status(200).json({
