@@ -17,7 +17,7 @@ sendConfirmationEmail = ({ email, _id }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>Thank you for registering into our Application. Just one last step left...</p>
-        <p>To activate your account please follow this link: <a target="_" href="http://localhost:3000/api/activate/user/${_id}">http://localhost:3000/api/activate </a></p>
+        <p>To activate your account please follow this link: <a target="_" href="https://main.d27jkfy1s4oxp5.amplifyapp.com/api/activate/user/${_id}">Confirm Mail </a></p>
         <p>Cheers</p>
         <p>CFMS</p>
       `,
@@ -53,7 +53,7 @@ changePasswordMail = ({ email }) => {
       html: `
         <h3> Hello ${email} </h3>
         <p>To change your password  click on the below mentioned link</p>
-        <p> <a target="_" href="http://localhost:3000/api/changePassword/${email}">http://localhost:3000/api//forogtPassword</a></p>
+        <p> <a target="_" href="https://main.d27jkfy1s4oxp5.amplifyapp.com/api/changePassword/${email}">Change Password</a></p>
         <p>Regards</p>
         <p>CFMS</p>
       `,
@@ -89,7 +89,7 @@ addMemberMail = ({ email, uid, name }) => {
       html: `
         <h3> Hello ${email} you are invited by ${name} to join a private club. How lucky 🤩 </h3>
         <p> Please click on the below link to join</p>
-        <p> <a target="_" href="http://localhost:3000/api/acceptInvite/${uid}">Accept Invite</a></p>
+        <p> <a target="_" href="https://main.d27jkfy1s4oxp5.amplifyapp.com/api/acceptInvite/${uid}">Accept Invite</a></p>
         <p>Regards</p>
         <p>CFMS</p>
       `,

@@ -10,7 +10,6 @@ exports.sendMemberData = (req, res, next) => {
         if (user == null) {
           res.status(404).json({ user, msg: " User Not Found" });
         } else {
-          console.log("User Found : ", user.name);
           res.status(200).json(user);
         }
       })
