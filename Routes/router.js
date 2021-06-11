@@ -53,7 +53,9 @@ router.post("/api/registration", utils.authMiddleware, registration);
 
 //* ------------ Chit Registration Route ------------ Protected
 
-const { privateChitRegistration } = require("../Privatechit/registerNewChit");
+const {
+  privateChitRegistration,
+} = require("../Privatechit/privateChitRegistration");
 router.post(
   "/api/registerPrivateChit",
   utils.authMiddleware,
