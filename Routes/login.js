@@ -27,6 +27,7 @@ exports.login = (req, res, next) => {
               " : ",
               user.userData.name
             );
+
             const tokenObj = utils.issueJWT(user);
             res
               .status(200)

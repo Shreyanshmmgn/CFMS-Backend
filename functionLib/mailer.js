@@ -71,5 +71,42 @@ changePasswordMail = ({ email }) => {
   });
 };
 
+addMemberMail = ({ email }) => {
+  // Send a pending request cookie
+  new Promise((res, rej) => {
+    const transporter = nodeMailer.createTransport({
+      service: "Gmail",
+      auth: {
+        user: "dnotdevil@gmail.com",
+        pass: "IronManIsBestAvenger@1",
+        // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
+      },
+    });
+    const message = {
+      from: process.env.GOOGLE_USER,
+      to: email,
+      subject: "CFMS - Forgot Password Link",
+      html: `
+        <h3> Hello ${email} has invited you to join their private club. How lucky 🤩 </h3>
+        <p> Please click on the below link to join</p>
+        <p> <a target="_" href="http://localhost:3000/api/acceptInvite/${email}">Accept Invite</a></p>
+        <p>Regards</p>
+        <p>CFMS</p>
+      `,
+    };
+
+    transporter.sendMail(message, function (err, info) {
+      if (err) {
+        rej(err);
+      } else {
+        console.log(info);
+        res(info);
+      }
+    });
+    console.log("Forgot password Mail send  !!");
+  });
+};
+
 exports.sendConfirmationEmail = sendConfirmationEmail;
 exports.changePasswordMail = changePasswordMail;
+exports.addMemberMail = addMemberMail;

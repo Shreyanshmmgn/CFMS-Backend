@@ -1,5 +1,5 @@
 const User = require("../Models/userModel");
-const { changePasswordMail } = require("../functionLib/mailer");
+const { addMemberMail } = require("../functionLib/mailer");
 
 exports.addNewMembers = async (req, res) => {
   if (Object.keys(req.body).length === 0) {
@@ -10,26 +10,9 @@ exports.addNewMembers = async (req, res) => {
   let uid = req.cookies.uid;
   let newMembers = req.body;
 
-  console.log("Private Chit data : ", newMembers);
-  // [
-  //   {
-  //     firstName: "Shyam Yadav ",
-  //     emailId: "shyamyadav21099@gmail.com",
-  //     Role: "Member",
-  //     id: 447552,
-  //   },
-  //   { firstName: "asdasd", emailId: "adasd", id: 314685, Role: "Member" },
-  //   {
-  //     firstName: "Shreyansh ",
-  //     emailId: "shreyansh17csu184@gmail.com",
-  //     id: 456543,
-  //     Role: "Member",
-  //   },
-  // ];
   newMembers.map(async (mem) => {
-    console.log("email send to : ", mem.emailId);
     let emailId = mem.emailId;
-    await changePasswordMail({ email: emailId });
+    await addMemberMail({ email: emailId });
   });
 
   try {

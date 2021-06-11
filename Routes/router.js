@@ -43,8 +43,13 @@ router.post("/api/activate/user/:_id", activateUser);
 
 const { registration } = require("./registration");
 router.post("/api/registration", utils.authMiddleware, registration);
+//* ------------ Dashboard Route ------------ Protected
 
-//* ------------ Private Chit Route ------------ Protected
+//! Not needed for now
+// const { dashboard } = require("./dashboard");
+// router.post("/api/dashboard", utils.authMiddleware, dashboard);
+
+//* ------------ Private Chit Route ------------ Protected inviteAccepted
 
 //* ------------ Chit Registration Route ------------ Protected
 
@@ -59,6 +64,9 @@ router.post(
 
 const { addNewMembers } = require("../Privatechit/addNewMember");
 router.post("/api/addNewMembers", utils.authMiddleware, addNewMembers);
+
+const { inviteAccepted } = require("../Privatechit/inviteAccepted");
+router.post("/api/inviteAccepted/:email", inviteAccepted);
 
 //* ------------ LogoutRoute ------------
 
