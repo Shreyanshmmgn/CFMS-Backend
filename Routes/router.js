@@ -93,6 +93,11 @@ router.post("/api/accountDetails", accountDetails);
 const { logout } = require("./logout");
 router.post("/api/logout", logout);
 
+//* ------------  ------------
+//* ------------ Blockchain Route ------------
+//* ------------  ------------
+// const Blockchain = require("../Blockchain/blockchain");
+// router.post("/api/blockchian", Blockchain.chain);
 //* ------------ Exporting here------------
 
 module.exports = router;
