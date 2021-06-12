@@ -46,8 +46,8 @@ router.post("/api/registration", utils.authMiddleware, registration);
 //* ------------ Dashboard Route ------------ Protected
 
 //! Not needed for now
-// const { dashboard } = require("./dashboard");
-// router.post("/api/dashboard", utils.authMiddleware, dashboard);
+const { dashboard } = require("./dashboard");
+router.post("/api/dashboard", utils.authMiddleware, dashboard);
 
 //* ------------ Private Chit Route ------------ Protected inviteAccepted
 
@@ -74,6 +74,19 @@ router.post("/api/inviteAccepted/:uid", inviteAccepted);
 
 const { sendMemberData } = require("../Privatechit/sendMemberData");
 router.post("/api/sendMemberData/:email", sendMemberData);
+
+//* ------------  ------------
+//* ------------ Account Route ------------
+//* ------------  ------------
+
+const { investment } = require("../Account/investment");
+router.post("/api/investment", investment);
+
+const { wallet } = require("../Account/wallet");
+router.post("/api/wallet", wallet);
+
+const { accountDetails } = require("../Account/accountDetails");
+router.post("/api/accountDetails", accountDetails);
 
 //* ------------ LogoutRoute ------------
 

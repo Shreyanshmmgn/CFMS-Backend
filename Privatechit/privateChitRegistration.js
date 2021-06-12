@@ -10,6 +10,7 @@ exports.privateChitRegistration = async (req, res) => {
   let privateChitData = req.body;
   privateChitData.chitType = "Private";
   privateChitData.memberType = "Owner";
+  privateChitData.rounds = privateChitData.totalMembers;
 
   console.log("Private Chit data : ", privateChitData);
 
@@ -18,8 +19,7 @@ exports.privateChitRegistration = async (req, res) => {
       var newItem = user;
       newItem.privateChitData = privateChitData;
       await newItem.save();
-      // var newItem = user;
-      // newItem.privateChitData = privateChitData;
+
       res.status(200).json({
         message: " User data updated ! private chit made succeesfully ",
         success: true,

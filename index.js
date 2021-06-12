@@ -4,6 +4,8 @@ const app = express();
 
 // Middleware to parse Json
 app.use(express.json());
+// Socket io setup
+
 // Middleware to parse incoming urlencoded payloads
 app.use(express.urlencoded({ extended: true }));
 
@@ -13,7 +15,6 @@ dotenv.config();
 
 // To let us make req for one site to another and one localhost to another
 const cors = require("cors");
-
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
   res.setHeader(
@@ -44,6 +45,8 @@ app.use(function (req, res, next) {
 //To use cookies
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
+
+// Adding socket .io and http
 
 // Incluing database
 require("./Database/database");
