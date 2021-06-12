@@ -47,7 +47,20 @@ const signUpTemplate = new schema({
   publicChitData: { type: Array, default: [] },
   privateChitData: {},
   memberDetails: { type: Array, default: [] },
-  roundDetails: { type: String },
+  roundDetails: { type: Array, default: [] },
+  investmentDetails: {
+    totalMoneyInvested: { type: Number },
+    netIntrestEarned: { type: Number },
+    cyclesRemaining: { type: Number },
+    nextBidDate: { type: String },
+  },
+  wallet: { balance: { type: Number } },
+  bankDetails: {
+    cardType: { type: String },
+    cardHolderName: { type: String },
+    cardNumber: { type: String },
+    expiryDate: { type: String },
+  },
 });
 // Document
 
