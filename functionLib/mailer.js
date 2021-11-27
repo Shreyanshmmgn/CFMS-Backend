@@ -37,7 +37,7 @@ sendConfirmationEmail = ({ email, _id }) => {
 };
 
 changePasswordMail = ({ email }) => {
-  new Promise((res, rej) => {
+  new Promise(async (res, rej) => {
     const transporter = nodeMailer.createTransport({
       service: "Gmail",
       auth: {
@@ -46,8 +46,9 @@ changePasswordMail = ({ email }) => {
         // util.decryptData(process.env.GOOGLE_PASSWORD, process.env.IV)
       },
     });
+
     const message = {
-      from: process.env.GOOGLE_USER,
+      from: "dnotdevil@gmail.com",
       to: email,
       subject: "CFMS - Forgot Password Link",
       html: `
@@ -59,7 +60,7 @@ changePasswordMail = ({ email }) => {
       `,
     };
 
-    transporter.sendMail(message, function (err, info) {
+    await transporter.sendMail(message, function (err, info) {
       if (err) {
         rej(err);
       } else {
@@ -68,6 +69,8 @@ changePasswordMail = ({ email }) => {
       }
     });
     console.log("Forgot password Mail send  !!");
+  }).catch((err) => {
+    console.log("Node mailer error : ", err);
   });
 };
 
