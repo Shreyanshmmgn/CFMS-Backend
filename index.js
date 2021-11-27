@@ -53,8 +53,9 @@ require("./Database/database");
 
 // Including all the routes
 const routerPath = require("./Routes/router");
-
 app.use(("/", routerPath));
+
+
 
 // Server will be listing to port : 5000
 app.listen(process.env.PORT || 5000, () =>
